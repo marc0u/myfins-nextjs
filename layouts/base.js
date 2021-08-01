@@ -14,7 +14,11 @@ export default function BaseLayout({ children }) {
           content="initial-scale=1.0, with=device-width"
         />
       </Head>
-      {children}
+      <div
+        style={{ display: "flex", flexDirection: "column", height: "100vh" }}
+      >
+        {children}
+      </div>
     </div>
   );
 }

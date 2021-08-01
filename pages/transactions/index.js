@@ -1,12 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Container, Divider, Grid } from "@material-ui/core";
+import { NoSsr, Divider, Grid } from "@material-ui/core";
 import { useStyles } from "./transactions.styles";
-import TransactionsTableContainer from "../../containers/transactionstable/transactionstable.container";
-import BalanceChartContainer from "../../containers/balancechart/balancechart.container";
-import CategoryChartContainer from "../../containers/summarychart/summarychart.container";
 import BackForwardToolbar from "../../components/backforwardtoolbar/backforwardtoolbar.component";
 import { useSnackbar } from "notistack";
 import MainLayout from "../../layouts/main";
+import dynamic from "next/dynamic";
+
+const TransactionsTableContainer = dynamic(
+  () =>
+    import("../../containers/transactionstable/transactionstable.container"),
+  { ssr: false }
+);
+const BalanceChartContainer = dynamic(
+  () => import("../../containers/balancechart/balancechart.container"),
+  { ssr: false }
+);
+const CategoryChartContainer = dynamic(
+  () => import("../../containers/summarychart/summarychart.container"),
+  { ssr: false }
+);
 
 export default function Transactions() {
   const classes = useStyles();
@@ -65,23 +77,27 @@ export default function Transactions() {
               justify="space-evenly"
               alignItems="center"
             >
-              <BalanceChartContainer
-                monthCounter={monthCounter}
-                onError={handleError}
-              />
-              <CategoryChartContainer
-                monthCounter={monthCounter}
-                onError={handleError}
-              />
+              <NoSsr>
+                <BalanceChartContainer
+                  monthCounter={monthCounter}
+                  onError={handleError}
+                />
+                <CategoryChartContainer
+                  monthCounter={monthCounter}
+                  onError={handleError}
+                />
+              </NoSsr>
             </Grid>
           </Grid>
         </Grid>
         <Divider className={classes.divider} />
         <Grid item xs={12}>
-          <TransactionsTableContainer
-            monthCounter={monthCounter}
-            onError={handleError}
-          />
+          <NoSsr>
+            <TransactionsTableContainer
+              monthCounter={monthCounter}
+              onError={handleError}
+            />
+          </NoSsr>
         </Grid>
       </Grid>
     </MainLayout>

@@ -3,7 +3,7 @@ import axios from "axios";
 class myStocksAPI {
   constructor() {
     this.axios = axios.create({
-      baseURL: `${process.env.REACT_APP_MYFINSAPI_HOST}/api/myfins/v2/`,
+      baseURL: `${process.env.NEXT_PUBLIC_MYFINSAPI_HOST}/api/myfins/v2/`,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("sessionID")}`,
       },

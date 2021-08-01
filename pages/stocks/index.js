@@ -2,11 +2,25 @@ import React from "react";
 import useStyles from "./stocks.styles";
 import { Divider, Grid, Container } from "@material-ui/core";
 import { useSnackbar } from "notistack";
-import StocksTableContainer from "../../containers/stockstable/stockstable.container";
-import SummaryCardsContainer from "../../containers/summarycards/summarycards.container";
-import HoldingsChartContainer from "../../containers/holdingschart/holdingschart.container";
-import PortfolioChartContainer from "../../containers/portfoliochart/portfoliochart.container";
 import MainLayout from "../../layouts/main";
+import dynamic from "next/dynamic";
+
+const StocksTableContainer = dynamic(
+  () => import("../../containers/stockstable/stockstable.container"),
+  { ssr: false }
+);
+const SummaryCardsContainer = dynamic(
+  () => import("../../containers/summarycards/summarycards.container"),
+  { ssr: false }
+);
+const HoldingsChartContainer = dynamic(
+  () => import("../../containers/holdingschart/holdingschart.container"),
+  { ssr: false }
+);
+const PortfolioChartContainer = dynamic(
+  () => import("../../containers/portfoliochart/portfoliochart.container"),
+  { ssr: false }
+);
 
 export default function Stocks() {
   const classes = useStyles();

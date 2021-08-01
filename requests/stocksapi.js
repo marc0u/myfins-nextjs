@@ -3,7 +3,7 @@ import axios from "axios";
 class stocksAPI {
   constructor() {
     this.axios = axios.create({
-      baseURL: `${process.env.REACT_APP_STOCKSAPI_HOST}/api/stocks/v2/`,
+      baseURL: `${process.env.NEXT_PUBLIC_STOCKSAPI_HOST}/api/stocks/v2/`,
     });
   }
   pathStockPriceByDay(ticker) {

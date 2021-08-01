@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 // Material UI
 import { Typography, Grid, Container } from "@material-ui/core";
-// Apex Charts
-import Chart from "react-apexcharts";
 // Local
 import { useStyles } from "./stockmarketchart.styles";
 import { chartOptions } from "./stockmarketchart.setting";
 import stocksAPI from "../../requests/stocksapi";
 import { getVariation } from "../../utils/math.utils";
+
+// Apex Charts
+import dynamic from "next/dynamic";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function ({ ticker, onError, onLoad }) {
   const classes = useStyles();

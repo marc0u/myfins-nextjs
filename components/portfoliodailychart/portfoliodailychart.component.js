@@ -1,6 +1,8 @@
 import React from "react";
-import Chart from "react-apexcharts";
 import { defaultLineChartOptions } from "./stocks.settings";
+import dynamic from "next/dynamic";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function PortfolioDailyChart({ series }) {
   return (

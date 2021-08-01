@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Chart from "react-apexcharts";
 import { defaultPieChartOptions } from "./summarychart.settings";
 import myfinsAPI from "../../requests/myfinsapi";
+import dynamic from "next/dynamic";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function SummaryChartContainer({ monthCounter, onError }) {
   const [chartPieSeries, setChartPieSeries] = useState([]);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 // Material-UI
@@ -39,8 +39,7 @@ export default function SimpleAppBar({ children }) {
   const [openInvesment, setOpenInvesment] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const isNode = typeof module !== "undefined";
-  const userPicture = !isNode && localStorage.getItem("userPicture");
+  const [userPicture, setUserPicture] = useState(null);
 
   const handleDrawer = () => {
     setOpenDrawer(!openDrawer);
@@ -61,6 +60,11 @@ export default function SimpleAppBar({ children }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useEffect(
+    () => setUserPicture(localStorage.getItem("userPicture")),
+    [userPicture]
+  );
 
   return (
     <div>

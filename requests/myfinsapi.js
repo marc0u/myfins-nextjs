@@ -1,12 +1,11 @@
 import axios from "axios";
-const isNode = typeof module !== "undefined";
 
 class myfinsAPI {
   constructor() {
     this.axios = axios.create({
-      baseURL: `${process.env.REACT_APP_MYFINSAPI_HOST}/api/myfins/v2`,
+      baseURL: `${process.env.NEXT_PUBLIC_MYFINSAPI_HOST}/api/myfins/v2`,
       headers: {
-        Authorization: `Bearer ${!isNode && localStorage.getItem("sessionID")}`,
+        Authorization: `Bearer ${localStorage.getItem("sessionID")}`,
       },
     });
   }
@@ -15,19 +14,19 @@ class myfinsAPI {
     const data = new FormData();
     data.append("token", token);
     return await axios.post(
-      `${process.env.REACT_APP_MYFINSAPI_HOST}/login`,
+      `${process.env.NEXT_PUBLIC_MYFINSAPI_HOST}/login`,
       data
     );
   }
 
   logout() {
-    // return axios.get(`${process.env.REACT_APP_MYFINSAPI_HOST}/logout`);
+    // return axios.get(`${process.env.NEXT_PUBLIC_MYFINSAPI_HOST}/logout`);
     localStorage.clear();
     window.location.reload();
   }
 
   notify(name, email) {
-    axios.get(`${process.env.REACT_APP_MYFINSAPI_HOST}/notify`, {
+    axios.get(`${process.env.NEXT_PUBLIC_MYFINSAPI_HOST}/notify`, {
       params: {
         name: name,
         email: email,
