@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "next/link";
+import Link from "next/link";
 import clsx from "clsx";
 // Material-UI
 import AppBar from "@material-ui/core/AppBar";
@@ -138,7 +138,7 @@ export default function SimpleAppBar({ children }) {
         </div>
         <Divider />
         <List>
-          <Link to="/" className={classes.link}>
+          <Link href="/" className={classes.link}>
             <ListItem button key="Dashboard" onClick={handleDrawer}>
               <ListItemIcon>
                 <DashboardIcon />
@@ -155,7 +155,7 @@ export default function SimpleAppBar({ children }) {
           </ListItem>
           <Collapse in={openWallet} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <Link to="/transactions" className={classes.link}>
+              <Link href="/transactions" className={classes.link}>
                 <ListItem
                   button
                   className={classes.nested}
@@ -178,7 +178,7 @@ export default function SimpleAppBar({ children }) {
           </ListItem>
           <Collapse in={openInvesment} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <Link to="/stocks" className={classes.link}>
+              <Link href="/stocks" className={classes.link}>
                 <ListItem
                   button
                   className={classes.nested}
@@ -190,7 +190,7 @@ export default function SimpleAppBar({ children }) {
                   <ListItemText primary="Stocks" />
                 </ListItem>
               </Link>
-              <Link to="/stocks-market" className={classes.link}>
+              <Link href="/stocks-market" className={classes.link}>
                 <ListItem
                   button
                   className={classes.nested}
